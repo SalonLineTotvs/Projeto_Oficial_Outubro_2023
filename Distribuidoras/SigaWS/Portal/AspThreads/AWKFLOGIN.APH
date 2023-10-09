@@ -1,0 +1,174 @@
+
+<html>
+	<head> 
+		<title> SalonLine - Portal de Libera&ccedil;&atilde;o </title>
+
+		<meta name="description" content="Tela de login.">
+		<meta name="keywords" content="login, acesso, plataforma">
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<style>
+			* {
+				font-family: sans-serif;
+				font-size: 16px;
+				border: none;
+				outline: none;
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+
+			p,
+			a {
+				line-height: 1.5;
+			}
+
+			.container {
+				display: flex;
+				height: 100vh;
+				width: 100vw;
+			}
+
+			.left {
+				position: relative;
+				width: 40vw;
+				background-color: #fff;
+				background-image: url("https://www.sunnyvale.com.br/wp-content/uploads/2020/09/shutterstock_1661882461.png");
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+
+			.right {
+				background: #76b852; /* fallback for old browsers */
+				background: -webkit-linear-gradient(right, #01438d, #ffffff);
+				background: -moz-linear-gradient(right, #01438d, #ffffff);
+				background: -o-linear-gradient(right, #01438d, #ffffff);
+				background: linear-gradient(to bottom, #01438d, #ffffff);
+				position: relative;
+				width: 60vw;
+				color: #fff;
+			}
+
+			.right div {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+
+			.right h1 {
+				font-size: 28px;
+				margin-bottom: 10px;
+			}
+
+			.right h2 {
+				font-size: 22px;
+				margin-bottom: 10px;
+				margin-top: 30px;
+			}
+
+			.senha {
+				margin-top: 10px;
+			}
+
+			.right label,
+			.input-login,
+			.right button {
+				display: block;
+			}
+
+			.input-login,
+			.right button {
+				width: 350px;
+				border-radius: 3px;
+			}
+
+			.right label {
+				margin-bottom: 10px;
+			}
+
+			.input-login {
+				padding: 10px 15px;
+				color: #484848;
+			}
+
+			.right button {
+				background-color: #8a8a8a;
+				color: #fff;
+				cursor: pointer;
+				margin-top: 35px;
+				padding: 15px 0;
+				border-radius: 3px;
+			}
+
+			.right button:hover {
+				background-color: #626262;
+			}
+
+			.input-portal {
+				transform: scale(1.5);
+			}
+
+			.financeiro {
+				margin-top: 10px;
+			}
+
+			img {
+				background-color: #fff;
+				padding: 5px;
+				border-radius: 3px;
+				margin-bottom: 35px;
+			}
+
+			body {
+				  background: #76b852; /* fallback for old browsers */
+				  background: -webkit-linear-gradient(right, #01438d, #ffffff);
+				  background: -moz-linear-gradient(right, #01438d, #ffffff);
+				  background: -o-linear-gradient(right, #01438d, #ffffff);
+				  background: linear-gradient(to bottom, #01438d, #ffffff);
+				  font-family: "Roboto", sans-serif;
+				  -webkit-font-smoothing: antialiased;
+				  -moz-osx-font-smoothing: grayscale;      
+			}		
+			
+			@media (max-width: 768px) {
+				.right {
+					width: 100vw;
+				}
+
+				.left {
+					display: none;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<main class="container">
+			<div class="left"></div>
+			<div class="right">
+				<div>
+					<img src="https://cdn.desconto.com.br/img/merchants/132446/360-logo/v1/salonline-descontos.png" alt="SalonLine">
+
+					<!--<h1> Login </h1>-->
+					
+					<form method="post" action="./AWKFAUTH.apw">
+						<label> Usu&aacute;rio: </label>
+						<input type="text" name="txt_Nome" class="input-login" required>
+						<label class="senha"> Senha: </label>
+						<input type="password" name="txt_Senha" class="input-login" required>
+
+						<h2> Portal de Liber&ccedil;&atilde;o </h2>
+						<input type="radio" name="txt_Portal" id="PC" class="input-portal" value="Pedido de Compras" required checked> Pedido de Compras
+						<br>
+						<input type="radio" name="txt_Portal" id="CR" class="input-portal financeiro" value="Contas a Pagar" required> Contas a Pagar
+
+						<button type="submit"> Acessar </button>
+					</form>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>

@@ -1,0 +1,165 @@
+#include "Protheus.ch"
+
+User function FISR0002()
+
+Local oReport
+
+If TRepInUse()	//verifica se relatorios personalizaveis esta disponivel
+
+	pergunte("FISE02")	
+	oReport := ReportDef()
+	oReport:PrintDialog()
+	
+EndIf
+
+Return
+
+
+Static Function ReportDef()
+
+Local oReport
+Local oSection1
+
+oReport := TReport():New("FISR0002","Relação de Notas Fiscais","FISE02",{|oReport|PrintReport(oReport)},"Este relatório tem como objetivo emitir as Notas de Entrada e Saída")
+
+oSection1 := TRSection():New(oReport,"Relação de Notas Fiscias",{"SF3"})
+
+//TRCell():New(oSection1,"D2_TOTAL"	,"TRB","Valor"  ,pesqPict("SD2","D2_TOTAL")  ,tamSx3("D2_TOTAL")[1])
+//TRCell():New(oSection1,"D2_VALIMP6"	,"TRB","PIS"  	,pesqPict("SD2","D2_VALIMP6") ,tamSx3("D2_VALIMP6")[1])
+//TRCell():New(oSection1,"D2_VALIMP5"	,"TRB","COFINS" ,pesqPict("SD2","D2_VALIMP5") ,tamSx3("D2_VALIMP5")[1])
+
+TRCell():New(oSection1,"F3_FILIAL"		,"TRB","Filial"			,,tamSx3("F3_FILIAL")[1])
+TRCell():New(oSection1,"F3_ENTRADA"		,"TRB","Emissao"		,pesqPict("SF3","F3_ENTRADA"),tamSx3("F3_ENTRADA")[1])
+TRCell():New(oSection1,"F3_NFISCAL"		,"TRB","Nota Fiscal "	,,tamSx3("F3_NFISCAL")[1])
+TRCell():New(oSection1,"F3_SERIE" 		,"TRB","Serie" 			,,tamSx3("F3_SERIE")[1])
+TRCell():New(oSection1,"F3_CLIEFOR" 	,"TRB","Clien/Fornec" 	,,tamSx3("F3_CLIEFOR")[1])
+TRCell():New(oSection1,"F3_LOJA" 		,"TRB","Loja" 			,,tamSx3("F3_LOJA")[1])
+TRCell():New(oSection1,"CNPJ" 			,"TRB","CNPJ" 			,,tamSx3("A1_CGC")[1]) 
+TRCell():New(oSection1,"F3_CFO" 		,"TRB","CFOP" 			,,tamSx3("F3_CFO")[1])
+TRCell():New(oSection1,"F3_ESTADO" 		,"TRB","Estado" 		,,tamSx3("F3_ESTADO")[1])
+TRCell():New(oSection1,"F3_EMISSAO" 	,"TRB","Emissao N.F."	,,tamSx3("F3_EMISSAO")[1])
+TRCell():New(oSection1,"F3_ALIQICM" 	,"TRB","Aliq. ICMS" 	,,tamSx3("F3_ALIQICM")[1])
+TRCell():New(oSection1,"F3_VALCONT" 	,"TRB","Vlr.Contabil" 	,,tamSx3("F3_VALCONT")[1])
+TRCell():New(oSection1,"F3_BASEICM" 	,"TRB","Base p/ICMS" 	,,tamSx3("F3_BASEICM")[1])
+TRCell():New(oSection1,"F3_VALICM" 		,"TRB","ICMS Tribut." 	,,tamSx3("F3_VALICM")[1])
+TRCell():New(oSection1,"F3_ISENICM" 	,"TRB","ICMS Isento " 	,,tamSx3("F3_ISENICM")[1])
+TRCell():New(oSection1,"F3_OUTRICM" 	,"TRB","ICMS Outros " 	,,tamSx3("F3_OUTRICM")[1])
+TRCell():New(oSection1,"F3_BASEIPI" 	,"TRB","Base de IPI " 	,,tamSx3("F3_BASEIPI")[1])
+TRCell():New(oSection1,"F3_VALIPI" 		,"TRB","IPI Tribut. " 	,,tamSx3("F3_VALIPI")[1])
+TRCell():New(oSection1,"F3_ISENIPI" 	,"TRB","IPI Isento  " 	,,tamSx3("F3_ISENIPI")[1])
+TRCell():New(oSection1,"F3_OUTRIPI" 	,"TRB","IPI Outros  " 	,,tamSx3("F3_OUTRIPI")[1])
+TRCell():New(oSection1,"F3_OBSERV" 		,"TRB","Observacoes " 	,,tamSx3("F3_OBSERV")[1])
+TRCell():New(oSection1,"F3_VALOBSE" 	,"TRB","Desconto" 		,,tamSx3("F3_VALOBSE")[1])
+TRCell():New(oSection1,"F3_ICMSRET" 	,"TRB","ICMS Retido " 	,,tamSx3("F3_ICMSRET")[1])
+TRCell():New(oSection1,"F3_ICMSCOM" 	,"TRB","ICMS Complem" 	,,tamSx3("F3_ICMSCOM")[1])
+TRCell():New(oSection1,"F3_IPIOBS" 		,"TRB","IPI na Obs  " 	,,tamSx3("F3_IPIOBS")[1])
+TRCell():New(oSection1,"F3_BASERET" 	,"TRB","Bs Icms Ret " 	,,tamSx3("F3_BASERET")[1])
+TRCell():New(oSection1,"F3_FORMUL" 		,"TRB","Form.Proprio" 	,,tamSx3("F3_FORMUL")[1])
+TRCell():New(oSection1,"F3_SOLTRIB" 	,"TRB","ICM.Sol.Trib" 	,,tamSx3("F3_SOLTRIB")[1])
+TRCell():New(oSection1,"F3_CRDZFM" 		,"TRB","Cred. ZFM" 		,,tamSx3("F3_CRDZFM")[1])
+TRCell():New(oSection1,"F3_VFECPST" 	,"TRB","Desc.ZFM" 		,,tamSx3("F3_DESCZFR")[1])
+TRCell():New(oSection1,"F3_CHVNFE" 		,"TRB","Chave NFe" 		,,tamSx3("F3_CHVNFE")[1])
+TRCell():New(oSection1,"F3_DESCRET" 	,"TRB","Desc retorno" 	,,tamSx3("F3_DESCRET")[1])
+TRCell():New(oSection1,"F3_BSICMOR" 	,"TRB","BS.ICMS Ori." 	,,tamSx3("F3_BSICMOR")[1])
+TRCell():New(oSection1,"F3_VFCPDIF" 	,"TRB","Vlr FECP Dif" 	,,tamSx3("F3_VFCPDIF")[1])
+TRCell():New(oSection1,"F3_DIFAL" 		,"TRB","Difal ICMS " 	,,tamSx3("F3_DIFAL")[1])
+TRCell():New(oSection1,"F3_BSFCCMP" 	,"TRB","Base FCP Cmp" 	,,tamSx3("F3_BSFCCMP")[1])
+TRCell():New(oSection1,"F3_TIPO" 		,"TRB","Tipo" 			,,tamSx3("F3_TIPO")[1])
+
+		
+//oSection1:Cell("D2_TOTAL"):SetHeaderAlign("RIGHT")
+//oSection1:Cell("D2_VALIMP6"):SetHeaderAlign("RIGHT")
+//oSection1:Cell("D2_VALIMP5"):SetHeaderAlign("RIGHT")
+
+Return oReport
+
+
+Static Function PrintReport(oReport)
+Local oSection1 := oReport:Section(1) 
+
+#IFDEF TOP
+	
+	oSection1:BeginQuery()
+	    
+	BeginSQL alias 'TRB'
+
+		//FATURAMENTO
+		SELECT F3_FILIAL, F3_ENTRADA, F3_NFISCAL, F3_SERIE, F3_CLIEFOR, F3_LOJA, A1_CGC CNPJ, 
+		F3_CFO, F3_ESTADO, F3_EMISSAO, F3_ALIQICM, F3_VALCONT, F3_BASEICM, F3_VALICM, F3_ISENICM,
+		F3_OUTRICM, F3_BASEIPI, F3_VALIPI, F3_ISENIPI, F3_OUTRIPI, F3_OBSERV, F3_VALOBSE, F3_ICMSRET,
+		F3_ICMSCOM, F3_IPIOBS, F3_BASERET, F3_FORMUL, F3_SOLTRIB, F3_CRDZFM, F3_VFECPST, F3_DESCZFR,
+		F3_CHVNFE, F3_DESCRET, F3_BSICMOR, F3_VFCPDIF, F3_DIFAL, F3_BSFCCMP, F3_TIPO
+		FROM %Table:SF3% F3 
+			INNER JOIN %Table:SF2% F2 ON F3_FILIAL = F2_FILIAL AND  F3_NFISCAL = F2_DOC AND F3_SERIE = F2_SERIE AND F3_CLIEFOR = F2_CLIENTE AND 
+						F3_LOJA = F2_LOJA AND F2_TIPO IN ('N','C','I','P') AND F2.D_E_L_E_T_ = ''
+			INNER JOIN %Table:SA1% A1 ON A1_COD = F3_CLIEFOR AND A1_LOJA = F3_LOJA AND A1.D_E_L_E_T_ = ''
+		WHERE F3_FILIAL BETWEEN %Exp:MV_PAR01% AND %EXP:MV_PAR02% AND
+		F3_ENTRADA BETWEEN %Exp:DTOS(MV_PAR03)% AND %EXP:DTOS(MV_PAR04)% AND F3.D_E_L_E_T_ = ''
+		
+		
+		UNION ALL
+		
+		//FATURAMENTO CANCELADO
+		SELECT F3_FILIAL, F3_ENTRADA, F3_NFISCAL, F3_SERIE, F3_CLIEFOR, F3_LOJA, A1_CGC CNPJ, 
+		F3_CFO, F3_ESTADO, F3_EMISSAO, F3_ALIQICM, F3_VALCONT, F3_BASEICM, F3_VALICM, F3_ISENICM,
+		F3_OUTRICM, F3_BASEIPI, F3_VALIPI, F3_ISENIPI, F3_OUTRIPI, F3_OBSERV, F3_VALOBSE, F3_ICMSRET,
+		F3_ICMSCOM, F3_IPIOBS, F3_BASERET, F3_FORMUL, F3_SOLTRIB, F3_CRDZFM, F3_VFECPST, F3_DESCZFR,
+		F3_CHVNFE, F3_DESCRET, F3_BSICMOR, F3_VFCPDIF, F3_DIFAL, F3_BSFCCMP, F3_TIPO
+		FROM %Table:SF3% F3
+			INNER JOIN %Table:SA1% A1 ON A1_COD = F3_CLIEFOR AND A1_LOJA = F3_LOJA AND A1.D_E_L_E_T_ = ''
+		WHERE F3_FILIAL BETWEEN %Exp:MV_PAR01% AND %EXP:MV_PAR02%  AND
+		F3_ENTRADA BETWEEN %Exp:DTOS(MV_PAR03)% AND %EXP:DTOS(MV_PAR04)% AND F3_DTCANC <> '' AND F3.D_E_L_E_T_ = ''
+		
+		
+		//DEVOLUÇÃO CLIENTE
+		UNION ALL
+		SELECT F3_FILIAL, F3_ENTRADA, F3_NFISCAL, F3_SERIE, F3_CLIEFOR, F3_LOJA, A1_CGC CNPJ, 
+		F3_CFO, F3_ESTADO, F3_EMISSAO, F3_ALIQICM, F3_VALCONT, F3_BASEICM, F3_VALICM, F3_ISENICM,
+		F3_OUTRICM, F3_BASEIPI, F3_VALIPI, F3_ISENIPI, F3_OUTRIPI, F3_OBSERV, F3_VALOBSE, F3_ICMSRET,
+		F3_ICMSCOM, F3_IPIOBS, F3_BASERET, F3_FORMUL, F3_SOLTRIB, F3_CRDZFM, F3_VFECPST, F3_DESCZFR,
+		F3_CHVNFE, F3_DESCRET, F3_BSICMOR, F3_VFCPDIF, F3_DIFAL, F3_BSFCCMP, F3_TIPO
+		FROM %Table:SF3% F3
+			INNER JOIN %Table:SF1% F1 ON F3_FILIAL = F1_FILIAL AND  F3_NFISCAL = F1_DOC AND F3_SERIE = F1_SERIE AND F3_CLIEFOR = F1_FORNECE AND F3_LOJA = F1_LOJA 
+				AND F1_TIPO IN ('D','B') AND F1.D_E_L_E_T_ = ''
+			INNER JOIN %Table:SA1% A1 ON A1_COD = F3_CLIEFOR AND A1_LOJA = F3_LOJA AND A1.D_E_L_E_T_ = ''
+		WHERE F3_FILIAL BETWEEN %Exp:MV_PAR01% AND %EXP:MV_PAR02% AND
+		F3_ENTRADA BETWEEN %Exp:DTOS(MV_PAR03)% AND %EXP:DTOS(MV_PAR04)% AND F3.D_E_L_E_T_ = ''
+		
+		
+		//ENTRADA NF FORNECEDOR
+		UNION ALL
+		SELECT F3_FILIAL, F3_ENTRADA, F3_NFISCAL, F3_SERIE, F3_CLIEFOR, F3_LOJA, A2_CGC CNPJ, 
+		F3_CFO, F3_ESTADO, F3_EMISSAO, F3_ALIQICM, F3_VALCONT, F3_BASEICM, F3_VALICM, F3_ISENICM,
+		F3_OUTRICM, F3_BASEIPI, F3_VALIPI, F3_ISENIPI, F3_OUTRIPI, F3_OBSERV, F3_VALOBSE, F3_ICMSRET,
+		F3_ICMSCOM, F3_IPIOBS, F3_BASERET, F3_FORMUL, F3_SOLTRIB, F3_CRDZFM, F3_VFECPST, F3_DESCZFR,
+		F3_CHVNFE, F3_DESCRET, F3_BSICMOR, F3_VFCPDIF, F3_DIFAL, F3_BSFCCMP, F3_TIPO
+		FROM %Table:SF3% F3
+			INNER JOIN %Table:SF1% F1 ON F3_FILIAL = F1_FILIAL AND  F3_NFISCAL = F1_DOC AND F3_SERIE = F1_SERIE AND
+				F3_CLIEFOR = F1_FORNECE AND F3_LOJA = F1_LOJA AND F1_TIPO IN ('N','P','C','I') AND F1.D_E_L_E_T_ = ''
+			INNER JOIN %Table:SA2% A2 ON A2_COD = F3_CLIEFOR AND A2_LOJA = F3_LOJA AND A2.D_E_L_E_T_ = ''
+		WHERE F3_FILIAL BETWEEN %Exp:MV_PAR01% AND %EXP:MV_PAR02% AND
+		F3_ENTRADA BETWEEN %Exp:DTOS(MV_PAR03)% AND %EXP:DTOS(MV_PAR04)% AND F3.D_E_L_E_T_ = ''
+		
+		// DEVOLUÇÃO COMPRA // EMISSÃO DE PEDIDO
+		UNION ALL
+		SELECT F3_FILIAL, F3_ENTRADA, F3_NFISCAL, F3_SERIE, F3_CLIEFOR, F3_LOJA, A2_CGC CNPJ, 
+		F3_CFO, F3_ESTADO, F3_EMISSAO, F3_ALIQICM, F3_VALCONT, F3_BASEICM, F3_VALICM, F3_ISENICM,
+		F3_OUTRICM, F3_BASEIPI, F3_VALIPI, F3_ISENIPI, F3_OUTRIPI, F3_OBSERV, F3_VALOBSE, F3_ICMSRET,
+		F3_ICMSCOM, F3_IPIOBS, F3_BASERET, F3_FORMUL, F3_SOLTRIB, F3_CRDZFM, F3_VFECPST, F3_DESCZFR,
+		F3_CHVNFE, F3_DESCRET, F3_BSICMOR, F3_VFCPDIF, F3_DIFAL, F3_BSFCCMP, F3_TIPO
+		FROM %Table:SF3% F3
+			INNER JOIN %Table:SF2% F2 ON F3_FILIAL = F2_FILIAL AND  F3_NFISCAL = F2_DOC AND F3_SERIE = F2_SERIE AND F3_CLIEFOR = F2_CLIENTE AND 
+						F3_LOJA = F2_LOJA AND F2_TIPO IN ('D','B') //AND F2.D_E_L_E_T_ = ''
+			INNER JOIN %Table:SA2% A2 ON A2_COD = F3_CLIEFOR AND A2_LOJA = F3_LOJA AND A2.D_E_L_E_T_ = ''
+		WHERE F3_FILIAL BETWEEN %Exp:MV_PAR01% AND %EXP:MV_PAR02% AND
+		F3_ENTRADA BETWEEN %Exp:DTOS(MV_PAR03)% AND %EXP:DTOS(MV_PAR04)%  AND F3.D_E_L_E_T_ = ''
+		
+	EndSQL
+	    
+	oSection1:EndQuery()
+			
+#ENDIF          
+
+oSection1:Print()
+
+Return
